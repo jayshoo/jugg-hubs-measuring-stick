@@ -7,7 +7,8 @@ async function measuringStick(id: string): Promise<Response> {
   let text = Decoder.decode(hash)
   return new Response(text, {
     headers: {
-      'content-type': 'text/plain'
+      'content-type': 'text/plain; charset=utf-8',
+      'content-disposition': 'inline'
     }
   })
 }
