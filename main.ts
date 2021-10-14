@@ -4,13 +4,15 @@ let Encoder = new TextEncoder()
 async function measuringStick(id: string): Promise<Response> {
   let data = Encoder.encode(id)
   let hash = await crypto.subtle.digest('SHA-256', data)
-  let text = Decoder.decode(hash)
-  return new Response(text, {
-    headers: {
-      'content-type': 'text/plain; charset=utf-8',
-      'content-disposition': 'inline'
-    }
-  })
+  let view = new DataView(hash)
+  
+  let answer = [
+    view.getUint8(0),
+    view.getUint8(1),
+    view.getUint8(2)
+  ]
+  
+  return new Response(JSON.stringify(answer))
 }
 
 addEventListener('fetch', event => {
