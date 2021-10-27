@@ -12,7 +12,7 @@ async function measuringStick(id: string): Promise<Response> {
     view.getUint8(2)
   ]
   let length = x[0] / 256 * 11 + 1
-  let width = x[1] / 256 * 4 + 1,
+  let width = x[1] / 256 * 4 + 1
   let angle = x[2] / 256 * 60
   
   let length_cm = length * 2.54
