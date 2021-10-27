@@ -11,13 +11,16 @@ async function measuringStick(id: string): Promise<Response> {
     view.getUint8(1),
     view.getUint8(2)
   ]
-  let n = [
-    x[0] / 256 * 11 + 1,
-    x[1] / 256 * 4 + 1,
-    x[2] / 256 * 60
-  ]
+  let length = x[0] / 256 * 11 + 1
+  let width = x[1] / 256 * 4 + 1,
+  let angle = x[2] / 256 * 60
+  
+  let length_cm = length * 2.54
+  let radius_cm = width * 2.54 / 2
+  let volume_cm3 = Math.PI * radius_cm * radius_cm * length
+  let mass_kg = volume_cm3 / 1000 * 1.1
 
-  let answer = `Dick length is ${n[0].toFixed(1)} inch and has a width of ${n[1].toFixed(0)} inch, with an angle of ${n[2].toFixed(0)} degrees.`
+  let answer = `Dick length is ${length.toFixed(1)} inch and has a width of ${width.toFixed(0)} inch, at an angle of ${angle.toFixed(0)} degrees and a total weight of ${mass_kg.toFixed(1)} kg.`
   
   return new Response(answer)
 }
