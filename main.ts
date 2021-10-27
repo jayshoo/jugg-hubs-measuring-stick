@@ -20,7 +20,7 @@ async function measuringStick(id: string): Promise<Response> {
   let volume_cm3 = Math.PI * radius_cm * radius_cm * length
   let mass_g = volume_cm3 * 1.1
 
-  let answer = `Dick length is ${length.toFixed(1)} inch and has a width of ${width.toFixed(0)} inch, weighing in at ${mass_kg.toFixed(1)} grams!`
+  let answer = `Dick length is ${length.toFixed(1)} inch and has a width of ${width.toFixed(0)} inch, weighing in at ${mass_g.toFixed(1)} grams!`
   
   return new Response(answer)
 }
