@@ -28,5 +28,6 @@ async function measuringStick(id: string): Promise<Response> {
 
 addEventListener('fetch', event => {
   let [_, id] = new URL(event.request.url).pathname.split('/')
+  console.log('measurement for', id)
   event.respondWith(measuringStick(id))
 })
