@@ -21,6 +21,7 @@ async function measuringStick(id: string): Promise<Response> {
   let mass_g = volume_cm3 * 1.1
 
   let answer = `Dick length is ${length.toFixed(1)} inch and has a width of ${width.toFixed(0)} inch, weighing in at ${mass_g.toFixed(0)} grams!`
+  if (mass_g >= 1000) answer = `𝕂𝕀𝕃𝕆𝔻𝕀ℂ𝕂!! ${length.toFixed(1)}" long, ${width.toFixed(0)}" wide, and a massive ${mass_g.toFixed(0)}g! 𝕄𝔼𝔸𝕋𝕐`
   
   return new Response(answer)
 }
