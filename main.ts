@@ -62,5 +62,5 @@ async function measuringStick2022(id: string): Promise<Response> {
 addEventListener('fetch', event => {
   let [_, id] = new URL(event.request.url).pathname.split('/')
   console.log('measurement for', id)
-  event.respondWith(measuringStick2022(id))
+  event.respondWith(measuringStick2021(id))
 })
