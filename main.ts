@@ -43,8 +43,8 @@ async function measuringStick2022(id: string): Promise<Response> {
   ]
   let length_pct = x[0] / 256 + x[2] / 65536 // 0<=x<=1
   let girth_pct = x[1] / 256 + x[3] / 65536 // 0<=x<=1
-  let length_z = (length_pct-1/2) * 6 // -3<=z<=+3
-  let girth_z = (girth_pct-1/2) * 6 // -3<=z<=+3
+  let length_z = (length_pct-1/2) * 12 // -6<=z<=+6
+  let girth_z = (girth_pct-1/2) * 12 // -6<=z<=+6
   let length_cm = BP.length[0] + BP.length[1] * length_z
   let girth_cm = BP.girth[0] + BP.girth[1] * girth_z
 
@@ -62,7 +62,7 @@ async function measuringStick2022(id: string): Promise<Response> {
   }
 
   let answer = `New stats: ${length_cm.toFixed(1)}cm long, ${girth_cm.toFixed(1)}cm around. (old: ${in_2021()})`
-  
+
   return new Response(answer)
 }
 
