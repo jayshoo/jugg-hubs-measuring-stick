@@ -47,22 +47,15 @@ async function measuringStick2022(id: string): Promise<Response> {
   let girth_z = (girth_pct-1/2) * 12 // -6<=z<=+6
   let length_cm = BP.length[0] + BP.length[1] * length_z
   let girth_cm = BP.girth[0] + BP.girth[1] * girth_z
+  let volume_ml = 0.9 * length_cm * Math.PI * Math.pow(girth_cm / (2 * Math.PI), 2)
 
-  function in_2021(): string {
-    let length = x[0] / 256 * 11 + 1
-    let width = x[1] / 256 * 4 + 1
-    
-    let length_cm = length * 2.54
-    let radius_cm = width * 2.54 / 2
-    
-    let volume_cm3 = Math.PI * radius_cm * radius_cm * length
-    let mass_g = volume_cm3 * 1.1
+  let length_in = length_cm / 2.54
+  let girth_in = girth_cm / 2.54
 
-    return `${length.toFixed(1)}" long ${width.toFixed(0)}" wide ${mass_g.toFixed(0)}g`
-  }
-
-  let answer = `New stats: ${length_cm.toFixed(1)}cm long, ${girth_cm.toFixed(1)}cm around. (old: ${in_2021()})`
-
+  let answer = `Dick is ${length_in.toFixed(1)} inch long and ${girth_in.toFixed(0)} inch around, weighing in at ${volume_ml.toFixed(0)} grams!`
+  if (volume_ml >= 1000) answer = `𝕂𝕀𝕃𝕆𝔻𝕀ℂ𝕂!! ${length_in.toFixed(1)}" long, ${girth_in.toFixed(0)}" around, and a 𝓟𝓔𝓝𝓓𝓤𝓛𝓞𝓤𝓢 ${volume_ml.toFixed(0)}g! 𝕍𝔼ℝ𝕐 𝕄𝔼𝔸𝕋𝕐`
+  if (volume_ml <= 100) answer = `ᴍɪᴄʀᴏᴘᴇᴇɴᴏʀ EleGiggle Barely ${length_in.toFixed(1)} inch long and ${girth_in.toFixed(1)} inch around, weighing only ${volume_ml.toFixed(1)}g... so sad.`
+  
   return new Response(answer)
 }
 
